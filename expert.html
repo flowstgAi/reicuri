@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Experts — REICURI</title>
+    <meta name="description" content="Meet the visionary leaders behind REICURI's science-backed nutrition products.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --font-display: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-accent: 'Playfair Display', Georgia, serif;
+            --color-bg: #0A0A0A;
+            --color-accent: #E85A28;
+            --color-accent-hover: #D14A1C;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .cursive {
+            font-family: var(--font-accent);
+            font-style: italic;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Decorative Leaves */
+        .decorative-leaf {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.12;
+        }
+
+        .leaf-top-right {
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M180 20C160 40 140 50 100 60C60 70 30 90 20 120C30 100 60 90 100 85C130 82 155 75 170 60C165 75 150 95 120 110C90 125 50 135 30 160C50 145 90 130 130 115C160 105 175 85 180 60C182 45 180 30 180 20Z' fill='%23E85A28'/%3E%3C/svg%3E") no-repeat;
+            background-size: contain;
+        }
+
+        .leaf-bottom-left {
+            bottom: 0;
+            left: 0;
+            width: 250px;
+            height: 250px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M20 180C40 160 50 140 60 100C70 60 90 30 120 20C100 30 90 60 85 100C82 130 75 155 60 170C75 165 95 150 110 120C125 90 135 50 160 30C145 50 130 90 115 130C105 160 85 175 60 180C45 182 30 180 20 180Z' fill='%23E85A28'/%3E%3C/svg%3E") no-repeat;
+            background-size: contain;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 40px 100px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, #111 0%, #0A0A0A 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(ellipse, rgba(232, 90, 40, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(232, 90, 40, 0.2);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .cursive {
+            color: var(--color-accent);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Expert Profile Section */
+        .expert-section {
+            padding: 100px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expert-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .expert-profile {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-bottom: 100px;
+        }
+
+        .expert-image-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .expert-image {
+            width: 100%;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .expert-image-wrapper:hover .expert-image {
+            transform: scale(1.05);
+        }
+
+        .expert-image-glow {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(232, 90, 40, 0.3) 100%);
+            pointer-events: none;
+        }
+
+        .expert-content {
+            padding-top: 20px;
+        }
+
+        .expert-name {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .expert-title {
+            font-size: 18px;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .expert-intro {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .expert-intro strong {
+            color: #fff;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .achievement {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            transition: all 0.4s;
+        }
+
+        .achievement:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--color-accent);
+            transform: translateY(-4px);
+        }
+
+        .achievement-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #FF7A45 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .achievement-icon svg {
+            stroke: #fff;
+        }
+
+        .achievement-text strong {
+            display: block;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .achievement-text span {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 80px 40px 120px;
+            text-align: center;
+        }
+
+        .video-section h2 {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .video-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 40px;
+            text-align: center;
+            background: linear-gradient(180deg, #0A0A0A 0%, #111 100%);
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 32px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: var(--color-accent);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 17px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(232, 90, 40, 0.4);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(232, 90, 40, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .expert-profile {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 140px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .expert-section {
+                padding: 60px 20px;
+            }
+
+            .expert-name {
+                font-size: 32px;
+            }
+
+            .expert-intro {
+                font-size: 16px;
+            }
+
+            .achievement {
+                padding: 16px;
+            }
+
+            .achievement-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .video-section {
+                padding: 40px 20px 80px;
+            }
+
+            .video-section h2 {
+                font-size: 28px;
+            }
+
+            .cta-section {
+                padding: 60px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 28px;
+            }
+
+            .cta-btn {
+                padding: 14px 28px;
+                font-size: 15px;
+            }
+
+            .decorative-leaf {
+                width: 120px !important;
+                height: 120px !important;
+            }
+
+            .nav {
+                padding: 16px 20px;
+            }
+
+            .nav-logo {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .expert-name {
+                font-size: 26px;
+            }
+
+            .footer {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">REICURI</a>
+        <ul class="nav-links">
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="index.html#science">Science</a></li>
+            <li><a href="expert.html">Experts</a></li>
+            <li><a href="index.html#testimonials">Reviews</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="decorative-leaf leaf-top-right" style="opacity: 0.15;"></div>
+        <span class="hero-eyebrow">Leadership & Vision</span>
+        <h1>Meet Our <span class="cursive">Expert</span></h1>
+        <p>The visionary driving nutraceutical excellence and bringing world-class nutrition to India</p>
+    </section>
+
+    <!-- Expert Profile Section -->
+    <section class="expert-section">
+        <div class="decorative-leaf leaf-bottom-left" style="opacity: 0.1;"></div>
+
+        <div class="expert-container">
+            <div class="expert-profile">
+                <div class="expert-image-wrapper">
+                    <img src="doc.png" alt="Mr. S. Ananth" class="expert-image">
+                    <div class="expert-image-glow"></div>
+                </div>
+
+                <div class="expert-content">
+                    <h2 class="expert-name">Mr. S. Ananth</h2>
+                    <p class="expert-title">Director – Reicuri Pvt. Ltd</p>
+
+                    <p class="expert-intro">
+                        A visionary leader with over <strong>30 years of expertise</strong> in the pharmaceutical and
+                        nutraceutical industries, bringing globally renowned European brands like <strong>Paradox
+                            (UK)</strong> and <strong>Marnys (Spain)</strong> to India.
+                    </p>
+
+                    <div class="achievements-grid">
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                </svg>
+                            </div>
+                            <div class="achievement-text">
+                                <strong>19 Years with Boehringer Ingelheim (UAE)</strong>
+                                <span>Top regional awards for brand excellence</span>
+                            </div>
+                        </div>
+
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                                </svg>
+                            </div>
+                            <div class="achievement-text">
+                                <strong>M.Pharm, Manipal</strong>
+                                <span>College of Pharmaceutical Sciences</span>
+                            </div>
+                        </div>
+
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="M21 21l-4.35-4.35" />
+                                </svg>
+                            </div>
+                            <div class="achievement-text">
+                                <strong>Research Pioneer</strong>
+                                <span>Omega-3 benefits in neurological disorders</span>
+                            </div>
+                        </div>
+
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M2 12h20" />
+                                    <path
+                                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                </svg>
+                            </div>
+                            <div class="achievement-text">
+                                <strong>Global Distribution</strong>
+                                <span>Joint venture for Paradox UK products</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <h2>Watch Mr. Ananth's <span class="cursive">Vision</span></h2>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/bxPQhNzzpp8" title="Mr. S. Ananth - Director, Reicuri"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Experience Our <span class="cursive">Products</span></h2>
+        <p>Discover the science-backed nutrition that Mr. Ananth has brought to India</p>
+        <a href="shop.html" class="cta-btn">
+            Browse Products
+            <span>→</span>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 REICURI. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

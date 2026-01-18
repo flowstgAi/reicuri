@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - REICURI</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --font-primary: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Outfit', sans-serif;
+            --font-accent: 'Playfair Display', serif;
+            --color-accent: #E85A28;
+            --color-bg: #0A0A0A;
+            --color-surface: rgba(255, 255, 255, 0.03);
+            --color-text: #FFFFFF;
+            --color-text-muted: rgba(255, 255, 255, 0.6);
+            --color-border: rgba(255, 255, 255, 0.1);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .cursive {
+            font-family: var(--font-accent);
+            font-style: italic;
+            color: var(--color-accent);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--color-border);
+            padding: 16px 40px;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-wishlist {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Cart Container */
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 40px 60px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 60px;
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 40px;
+        }
+
+        /* Cart Items */
+        .cart-item {
+            display: flex;
+            gap: 24px;
+            padding: 24px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            transition: all 0.3s;
+        }
+
+        .cart-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .cart-item-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-item-category {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-accent);
+            margin-bottom: 4px;
+        }
+
+        .cart-item-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-desc {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin-bottom: 16px;
+        }
+
+        .cart-item-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: var(--color-accent);
+        }
+
+        .qty-value {
+            font-size: 16px;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .cart-item-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--color-accent);
+        }
+
+        .cart-item-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .cart-action-btn {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+
+        .cart-action-btn:hover {
+            color: #fff;
+        }
+
+        .cart-action-btn.remove:hover {
+            color: #e74c3c;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .summary-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            font-size: 15px;
+        }
+
+        .summary-row span:first-child {
+            color: var(--color-text-muted);
+        }
+
+        .summary-row.total {
+            border-top: 1px solid var(--color-border);
+            margin-top: 16px;
+            padding-top: 20px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .summary-row.total span {
+            color: #fff;
+        }
+
+        .summary-row.total span:last-child {
+            color: var(--color-accent);
+        }
+
+        .summary-shipping {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #25D366;
+            text-align: center;
+        }
+
+        .btn-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 18px;
+            background: var(--color-accent);
+            border: none;
+            border-radius: 100px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-bottom: 12px;
+        }
+
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(232, 90, 40, 0.4);
+        }
+
+        .btn-continue {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .btn-continue:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .secure-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            color: var(--color-text-muted);
+            font-size: 12px;
+        }
+
+        /* Empty Cart */
+        .empty-cart {
+            text-align: center;
+            padding: 80px 40px;
+            grid-column: span 2;
+        }
+
+        .empty-cart svg {
+            width: 120px;
+            height: 120px;
+            stroke: rgba(255, 255, 255, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .empty-cart h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .empty-cart p {
+            color: var(--color-text-muted);
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            background: var(--color-accent);
+            border: none;
+            border-radius: 100px;
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(232, 90, 40, 0.4);
+        }
+
+        /* Recently Viewed */
+        .recently-viewed {
+            margin-top: 60px;
+            grid-column: span 2;
+        }
+
+        .recently-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .recently-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .recently-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .recently-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-4px);
+        }
+
+        .recently-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .recently-card h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .recently-card .price {
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        @media (max-width: 968px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+                padding: 100px 20px 40px;
+            }
+
+            .order-summary {
+                order: -1;
+            }
+
+            .empty-cart {
+                grid-column: span 1;
+            }
+
+            .recently-viewed {
+                grid-column: span 1;
+            }
+
+            .recently-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cart-item {
+                flex-direction: column;
+            }
+
+            .cart-item-image {
+                width: 100%;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="logo">REICURI</a>
+            <div class="nav-links">
+                <a href="shop.html">Shop</a>
+                <a href="wishlist.html" class="nav-wishlist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                    Wishlist
+                </a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Container -->
+    <div class="cart-container" id="cartContainer">
+        <div class="cart-main">
+            <h1 class="page-title">Shopping <span class="cursive">Cart</span></h1>
+            <div id="cartItems">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary" id="orderSummary">
+            <div class="summary-card">
+                <h3 class="summary-title">Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal (<span id="itemCount">0</span> items)</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="shipping">Calculated at checkout</span>
+                </div>
+                <div class="summary-row">
+                    <span>Estimated Tax</span>
+                    <span id="tax">₹0</span>
+                </div>
+                <div class="summary-shipping" id="freeShipping" style="display:none;">
+                    🎉 You qualify for FREE shipping!
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="total">₹0</span>
+                </div>
+                <a href="checkout.html" class="btn-checkout" id="checkoutBtn">
+                    Proceed to Checkout →
+                </a>
+                <a href="shop.html" class="btn-continue">Continue Shopping</a>
+                <div class="secure-checkout">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    Secure checkout
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty Cart -->
+        <div class="empty-cart" id="emptyCart" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+            </svg>
+            <h2>Your Cart is Empty</h2>
+            <p>Looks like you haven't added anything to your cart yet.</p>
+            <a href="shop.html" class="btn-primary">Start Shopping →</a>
+        </div>
+    </div>
+
+    <script>
+        const productDescriptions = {
+            'omega-capsules': 'Premium fish oil with 1000mg EPA + DHA per serving',
+            'omega-liquid': 'Liquid fish oil for easy absorption',
+            'omega-junior': 'Kid-friendly omega-3 supplement',
+            'manviox': 'CoQ10 for heart health support',
+            'bcaa': 'Branch chain amino acids for muscle recovery',
+            'artrohelp': 'Joint support formula with glucosamine'
+        };
+
+        let cart = JSON.parse(localStorage.getItem('reicuriCart')) || [];
+
+        function init() {
+            if (cart.length === 0) {
+                showEmptyCart();
+            } else {
+                renderCart();
+                updateSummary();
+            }
+        }
+
+        function showEmptyCart() {
+            document.querySelector('.cart-main').style.display = 'none';
+            document.getElementById('orderSummary').style.display = 'none';
+            document.getElementById('emptyCart').style.display = 'block';
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartItems');
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item" data-id="${item.id}">
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-category">${getCategoryForId(item.id)}</div>
+                        <h3 class="cart-item-name">${item.name}</h3>
+                        <p class="cart-item-desc">${productDescriptions[item.id] || ''}</p>
+                        <div class="cart-item-footer">
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="updateQty('${item.id}', -1)">−</button>
+                                <span class="qty-value">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+                            </div>
+                            <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString()}</div>
+                        </div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="cart-action-btn" onclick="moveToWishlist('${item.id}')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                            Save for Later
+                        </button>
+                        <button class="cart-action-btn remove" onclick="removeItem('${item.id}')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                            </svg>
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getCategoryForId(id) {
+            const categories = {
+                'omega-capsules': 'Omega-3',
+                'omega-liquid': 'Omega-3',
+                'omega-junior': 'Kids',
+                'manviox': 'Heart Health',
+                'bcaa': 'Performance',
+                'artrohelp': 'Joint Support'
+            };
+            return categories[id] || 'Supplement';
+        }
+
+        function updateQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    removeItem(id);
+                    return;
+                }
+            }
+            saveCart();
+            renderCart();
+            updateSummary();
+        }
+
+        function removeItem(id) {
+            const card = document.querySelector(`[data-id="${id}"]`);
+            if (card) {
+                card.style.transform = 'translateX(-100px)';
+                card.style.opacity = '0';
+            }
+
+            setTimeout(() => {
+                cart = cart.filter(i => i.id !== id);
+                saveCart();
+                if (cart.length === 0) {
+                    showEmptyCart();
+                } else {
+                    renderCart();
+                    updateSummary();
+                }
+            }, 300);
+        }
+
+        function moveToWishlist(id) {
+            let wishlist = JSON.parse(localStorage.getItem('reicuriWishlist')) || [];
+            if (!wishlist.includes(id)) {
+                wishlist.push(id);
+                localStorage.setItem('reicuriWishlist', JSON.stringify(wishlist));
+            }
+            removeItem(id);
+        }
+
+        function saveCart() {
+            localStorage.setItem('reicuriCart', JSON.stringify(cart));
+        }
+
+        function updateSummary() {
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+            const itemCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            const shipping = subtotal >= 1000 ? 0 : 99;
+            const tax = Math.round(subtotal * 0.18); // 18% GST
+            const total = subtotal + shipping + tax;
+
+            document.getElementById('itemCount').textContent = itemCount;
+            document.getElementById('subtotal').textContent = '₹' + subtotal.toLocaleString();
+            document.getElementById('shipping').textContent = shipping === 0 ? 'Free' : '₹' + shipping;
+            document.getElementById('tax').textContent = '₹' + tax.toLocaleString();
+            document.getElementById('total').textContent = '₹' + total.toLocaleString();
+
+            if (subtotal >= 1000) {
+                document.getElementById('freeShipping').style.display = 'block';
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - REICURI Premium Nutrition</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,500&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           DESIGN SYSTEM — Matching index.html Premium Theme
+           ═══════════════════════════════════════════════════════════════ */
+        :root {
+            --font-primary: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Outfit', sans-serif;
+            --font-accent: 'Playfair Display', serif;
+            --color-accent: #E85A28;
+            --color-accent-hover: #FF6B35;
+            --color-bg: #0A0A0A;
+            --color-surface: rgba(255, 255, 255, 0.03);
+            --color-text: #FFFFFF;
+            --color-text-muted: rgba(255, 255, 255, 0.6);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .cursive {
+            font-family: var(--font-accent);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--color-accent);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           NAVIGATION — Premium Dark Glassmorphism
+           ═══════════════════════════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--color-accent);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(232, 90, 40, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 90, 40, 0.4);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           HERO SECTION — Premium Dark with Floating Orbs
+           ═══════════════════════════════════════════════════════════════ */
+        .products-hero {
+            margin-top: 80px;
+            padding: 120px 40px 80px;
+            background: var(--color-bg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        .hero-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232, 90, 40, 0.15) 0%, transparent 70%);
+            top: -20%;
+            left: -10%;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(232, 90, 40, 0.1) 0%, transparent 70%);
+            bottom: -10%;
+            right: -5%;
+            animation: orbFloat 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes orbFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(30px, -20px) scale(1.05);
+            }
+
+            50% {
+                transform: translate(-20px, 30px) scale(0.95);
+            }
+
+            75% {
+                transform: translate(20px, 20px) scale(1.02);
+            }
+        }
+
+        .products-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -3px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .products-hero p {
+            font-size: 20px;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Category Filter Pills */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .filter-pill {
+            padding: 12px 28px;
+            background: var(--color-surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            color: var(--color-text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-pill:hover,
+        .filter-pill.active {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: #fff;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           PRODUCTS SECTION — Premium Grid Layout
+           ═══════════════════════════════════════════════════════════════ */
+        .products-section {
+            padding: 80px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .section-count {
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           PRODUCT CARD — Premium Dark Style
+           ═══════════════════════════════════════════════════════════════ */
+        .product-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s var(--ease-out-expo);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(232, 90, 40, 0.3);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 60px rgba(232, 90, 40, 0.1);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            height: 320px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease-out-expo);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+
+        /* Action Buttons */
+        .product-actions {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 10;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+            background: var(--color-accent);
+        }
+
+        .action-btn svg {
+            width: 22px;
+            height: 22px;
+            stroke: #000;
+            transition: stroke 0.3s ease;
+        }
+
+        .action-btn:hover svg {
+            stroke: #fff;
+        }
+
+        .action-btn.wishlist-btn.liked {
+            background: #e74c3c;
+        }
+
+        .action-btn.wishlist-btn.liked svg {
+            stroke: #fff;
+            fill: #fff;
+        }
+
+        /* Product Overlay */
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.4s ease;
+            pointer-events: none;
+        }
+
+        .product-card:hover .product-overlay {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Product Info */
+        .product-info {
+            padding: 28px;
+        }
+
+        .product-category {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .product-name {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .add-to-cart-btn {
+            padding: 14px 28px;
+            background: var(--color-accent);
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(232, 90, 40, 0.3);
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 90, 40, 0.4);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           INFO MODAL — Premium Dark Style
+           ═══════════════════════════════════════════════════════════════ */
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .info-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .info-modal-content {
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            max-width: 1000px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s var(--ease-out-expo);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .info-modal-close:hover {
+            background: var(--color-accent);
+            transform: rotate(90deg);
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 50px;
+        }
+
+        .modal-image {
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .modal-details h2 {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .modal-price {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--color-accent);
+            margin-bottom: 24px;
+        }
+
+        .modal-section {
+            margin-bottom: 28px;
+        }
+
+        .modal-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-section p {
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--color-text-muted);
+            font-weight: 500;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+
+        .benefits-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefits-list li::after {
+            content: '✓';
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .modal-cta {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn-primary {
+            background: var(--color-accent);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(232, 90, 40, 0.3);
+        }
+
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 90, 40, 0.4);
+        }
+
+        .modal-btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           WISHLIST TOAST — Premium Style
+           ═══════════════════════════════════════════════════════════════ */
+        .wishlist-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--color-accent);
+            color: #fff;
+            padding: 18px 32px;
+            border-radius: 100px;
+            font-weight: 600;
+            box-shadow: 0 10px 40px rgba(232, 90, 40, 0.4);
+            transform: translateY(150%);
+            transition: transform 0.4s var(--ease-out-expo);
+            z-index: 4000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .wishlist-toast.show {
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           FOOTER — Premium Dark Style
+           ═══════════════════════════════════════════════════════════════ */
+        .shop-footer {
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--color-text-muted);
+            font-size: 14px;
+        }
+
+        .footer-text a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 968px) {
+            .products-hero h1 {
+                font-size: 48px;
+                letter-spacing: -2px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .modal-grid {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .product-footer {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+
+            .add-to-cart-btn {
+                width: 100%;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           ANNOUNCEMENT BAR
+           ═══════════════════════════════════════════════════════════════ */
+        .announcement-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, var(--color-accent) 0%, #FF6B35 100%);
+            padding: 10px 20px;
+            text-align: center;
+            z-index: 1100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .announcement-text {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .announcement-timer {
+            display: flex;
+            gap: 8px;
+        }
+
+        .timer-block {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .announcement-close {
+            position: absolute;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        body.has-announcement nav {
+            top: 44px;
+        }
+
+        body.has-announcement .products-hero {
+            margin-top: 44px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           PRICE STYLING WITH STRIKETHROUGH
+           ═══════════════════════════════════════════════════════════════ */
+        .price-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .price-original {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: line-through;
+        }
+
+        .price-sale {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--color-accent);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--color-accent);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 10;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           CART SIDEBAR
+           ═══════════════════════════════════════════════════════════════ */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            max-width: 100%;
+            height: 100vh;
+            background: #0A0A0A;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 6000;
+            transition: right 0.4s var(--ease-out-expo);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 5999;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .cart-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .cart-checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--color-accent);
+            border: none;
+            border-radius: 100px;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+
+        .cart-continue-btn {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 20px;
+            height: 20px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           WHATSAPP WIDGET
+           ═══════════════════════════════════════════════════════════════ */
+        .whatsapp-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 4000;
+        }
+
+        .whatsapp-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+            animation: whatsappPulse 2s ease-in-out infinite;
+        }
+
+        .whatsapp-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: #fff;
+        }
+
+        @keyframes whatsappPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 6px 40px rgba(37, 211, 102, 0.6), 0 0 0 15px rgba(37, 211, 102, 0.1);
+            }
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            color: #000;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .whatsapp-widget:hover .whatsapp-tooltip {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="has-announcement">
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcementBar">
+        <span class="announcement-text">🎉 New Year Sale! Get <strong>15% OFF</strong> on all products</span>
+        <div class="announcement-timer">
+            <span class="timer-block" id="timerHours">23</span>
+            <span class="timer-block" id="timerMins">59</span>
+            <span class="timer-block" id="timerSecs">59</span>
+        </div>
+        <button class="announcement-close" onclick="closeAnnouncement()">&times;</button>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart (<span id="cartCount">0</span>)</h3>
+            <button class="cart-close" onclick="closeCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty" id="cartEmpty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    style="width:80px;height:80px;stroke:rgba(255,255,255,0.2);margin-bottom:20px;">
+                    <circle cx="9" cy="21" r="1" />
+                    <circle cx="20" cy="21" r="1" />
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">₹0</span>
+            </div>
+            <a href="checkout.html" class="cart-checkout-btn"
+                style="display:flex;align-items:center;justify-content:center;text-decoration:none;">Proceed to
+                Checkout</a>
+            <button class="cart-continue-btn" onclick="closeCart()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="logo">REICURI</a>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="index.html#science">SCIENCE</a></li>
+                <li><a href="index.html#experts">EXPERTS</a></li>
+                <li><a href="index.html#testimonials">REVIEWS</a></li>
+                <li><a href="index.html#contact">CONTACT</a></li>
+            </ul>
+            <!-- Wishlist Button -->
+            <a href="wishlist.html" style="position: relative; margin-right: 12px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+            </a>
+            <!-- Cart Button -->
+            <a href="cart.html" class="nav-cart-btn" style="position: relative; margin-right: 16px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                    <circle cx="9" cy="21" r="1" />
+                    <circle cx="20" cy="21" r="1" />
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg>
+                <span class="cart-badge" id="navCartBadge">0</span>
+            </a>
+            <a href="index.html" class="nav-cta">Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="products-hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <h1>Premium <span class="cursive">Supplements</span></h1>
+        <p>Scientifically formulated nutrition to fuel your wellness journey</p>
+        <div class="category-filter">
+            <button class="filter-pill active" onclick="filterProducts('all')">All Products</button>
+            <button class="filter-pill" onclick="filterProducts('omega')">Omega-3</button>
+            <button class="filter-pill" onclick="filterProducts('health')">Health</button>
+            <button class="filter-pill" onclick="filterProducts('performance')">Performance</button>
+        </div>
+    </section>
+
+    <!-- Omega-3 Products Section -->
+    <section class="products-section">
+        <h2 class="section-title">Omega-3 <span class="cursive">Collection</span></h2>
+        <div class="products-grid">
+            <!-- Product 1: Paradox Omega-3 Capsules -->
+            <div class="product-card" data-product="omega-capsules" data-category="omega">
+                <div class="product-image-wrapper">
+                    <img src="paradox omega-3 ani.png" alt="Paradox Omega-3 Capsules" class="product-image">
+                    <div class="product-overlay"></div>
+                    <div class="product-actions">
+                        <div class="action-btn info-btn" onclick="openInfoModal('omega-capsules', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg>
+                        </div>
+                        <div class="action-btn wishlist-btn" onclick="toggleWishlist('omega-capsules', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Omega-3</div>
+                    <h3 class="product-name">Paradox Omega-3 Capsules</h3>
+                    <p class="product-description">Premium fish oil with 1000mg EPA + DHA per serving for heart and
+                        brain health.</p>
+                    <div class="product-footer">
+                        <div class="product-price">₹2,499</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('omega-capsules')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2: Omega-3 Liquid -->
+            <div class="product-card" data-product="omega-liquid" data-category="omega">
+                <div class="product-image-wrapper">
+                    <img src="paradox omega-3 ani-1.png" alt="Omega-3 Liquid" class="product-image">
+                    <div class="product-overlay"></div>
+                    <div class="product-actions">
+                        <div class="action-btn info-btn" onclick="openInfoModal('omega-liquid', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg>
+                        </div>
+                        <div class="action-btn wishlist-btn" onclick="toggleWishlist('omega-liquid', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Omega-3</div>
+                    <h3 class="product-name">Omega-3 Liquid Fish Oil</h3>
+                    <p class="product-description">High-potency liquid formula with 2000mg EPA + DHA for maximum
+                        absorption.</p>
+                    <div class="product-footer">
+                        <div class="product-price">₹2,999</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('omega-liquid')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3: Junior Omega-3 -->
+            <div class="product-card" data-product="omega-junior" data-category="omega">
+                <div class="product-image-wrapper">
+                    <img src="paradox omega 3 spilling capusel ani.png" alt="Junior Omega-3" class="product-image">
+                    <div class="product-overlay"></div>
+                    <div class="product-actions">
+                        <div class="action-btn info-btn" onclick="openInfoModal('omega-junior', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg>
+                        </div>
+                        <div class="action-btn wishlist-btn" onclick="toggleWishlist('omega-junior', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Omega-3</div>
+                    <h3 class="product-name">Omega-3 Junior Liquid</h3>
+                    <p class="product-description">Kid-friendly strawberry-flavored liquid omega-3 for growing minds and
+                        bodies.</p>
+                    <div class="product-footer">
+                        <div class="product-price">₹1,999</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('omega-junior')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Supplements Section -->
+        <h2 class="section-title">Health <span class="cursive">Supplements</span></h2>
+        <div class="products-grid">
+            <!-- Product 4: Manviox Q10 -->
+            <div class="product-card" data-product="manviox" data-category="health">
+                <div class="product-image-wrapper">
+                    <img src="health suppli spearn ani.png" alt="Manviox Q10" class="product-image">
+                    <div class="product-overlay"></div>
+                    <div class="product-actions">
+                        <div class="action-btn info-btn" onclick="openInfoModal('manviox', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg>
+                        </div>
+                        <div class="action-btn wishlist-btn" onclick="toggleWishlist('manviox', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Heart Health</div>
+                    <h3 class="product-name">Manviox Q10</h3>
+                    <p class="product-description">Coenzyme Q10 formula for cardiovascular support and cellular energy
+                        production.</p>
+                    <div class="product-footer">
+                        <div class="product-price">₹2,799</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('manviox')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5: BCAA Complex -->
+            <div class="product-card" data-product="bcaa" data-category="performance">
+                <div class="product-image-wrapper">
+                    <img src="health suppli spearn ani.png" alt="BCAA Complex" class="product-image">
+                    <div class="product-overlay"></div>
+                    <div class="product-actions">
+                        <div class="action-btn info-btn" onclick="openInfoModal('bcaa', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg>
+                        </div>
+                        <div class="action-btn wishlist-btn" onclick="toggleWishlist('bcaa', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Performance</div>
+                    <h3 class="product-name">BCAA Complex</h3>
+                    <p class="product-description">Branch chain amino acids for muscle recovery and endurance during
+                        training.</p>
+                    <div class="product-footer">
+                        <div class="product-price">₹2,299</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('bcaa')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6: Artrohelp Forte -->
+            <div class="product-card" data-product="artrohelp" data-category="health">
+                <div class="product-image-wrapper">
+                    <img src="health suppli spearn ani.png" alt="Artrohelp Forte" class="product-image">
+                    <div class="product-overlay"></div>
+                    <div class="product-actions">
+                        <div class="action-btn info-btn" onclick="openInfoModal('artrohelp', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                            </svg>
+                        </div>
+                        <div class="action-btn wishlist-btn" onclick="toggleWishlist('artrohelp', event)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Joint Support</div>
+                    <h3 class="product-name">Artrohelp Forte</h3>
+                    <p class="product-description">Advanced joint support formula with glucosamine and chondroitin for
+                        mobility.</p>
+                    <div class="product-footer">
+                        <div class="product-price">₹3,299</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('artrohelp')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Modal -->
+    <div id="infoModal" class="info-modal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" onclick="closeInfoModal()">&times;</button>
+            <div class="modal-grid" id="modalContent">
+                <!-- Content will be dynamically inserted -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Toast -->
+    <div id="wishlistToast" class="wishlist-toast">
+        <span id="toastIcon"></span>
+        <span id="toastText"></span>
+    </div>
+
+    <script>
+        // Product Data
+        const productData = {
+            'omega-capsules': {
+                name: 'Paradox Omega-3 Capsules',
+                price: '$49.99',
+                image: 'paradox omega-3 ani.png',
+                description: 'Premium Omega-3 fish oil capsules delivering 1000mg of EPA + DHA per serving. Molecularly distilled for maximum purity and potency.',
+                benefits: [
+                    'Supports cardiovascular health and reduces inflammation',
+                    'Enhances brain function and cognitive performance',
+                    'Promotes healthy skin, hair, and nails',
+                    'Easy-to-swallow softgels with no fishy aftertaste',
+                    'Third-party tested for purity and heavy metals',
+                    'Sustainably sourced from wild-caught fish'
+                ],
+                why: 'Omega-3 fatty acids are essential nutrients that your body cannot produce on its own. Our premium formula provides the optimal ratio of EPA and DHA to support heart health, reduce inflammation, and boost brain function. Perfect for anyone looking to maintain optimal wellness.',
+                usage: 'Take 2 capsules daily with meals for best absorption. Consistent daily use shows best results after 30 days.'
+            },
+            'omega-liquid': {
+                name: 'Omega-3 Liquid Fish Oil',
+                price: '$59.99',
+                image: 'paradox omega-3 ani-1.png',
+                description: 'High-potency liquid omega-3 formula with 2000mg EPA + DHA per serving. Natural lemon flavor for superior bioavailability and taste.',
+                benefits: [
+                    'Double the potency of standard capsules for faster results',
+                    'Superior absorption compared to pill form',
+                    'Natural lemon flavor eliminates fishy taste',
+                    'Supports heart, brain, and joint health',
+                    'Perfect for mixing in smoothies or taking directly',
+                    'Certified sustainable and mercury-free'
+                ],
+                why: 'Liquid omega-3 offers up to 2x better absorption than capsules, making it the preferred choice for those seeking maximum benefits. The high concentration means you get therapeutic doses in just one serving.',
+                usage: 'Take 1 teaspoon (5ml) daily, either directly or mixed with food/beverages. Refrigerate after opening.'
+            },
+            'omega-junior': {
+                name: 'Omega-3 Junior Liquid',
+                price: '$39.99',
+                image: 'paradox ome...apusel ani.png',
+                description: 'Kid-friendly omega-3 liquid specially formulated for children. Delicious strawberry flavor with 500mg EPA + DHA per serving.',
+                benefits: [
+                    'Supports healthy brain development and learning',
+                    'Promotes focus and concentration in school',
+                    'Strengthens immune system naturally',
+                    'Great-tasting strawberry flavor kids love',
+                    'Free from artificial colors and sweeteners',
+                    'Easy dosing with included measuring cup'
+                ],
+                why: 'Growing children need omega-3s for proper brain development, focus, and overall health. Our junior formula is specially designed with kid-appropriate dosing and a taste children actually enjoy taking daily.',
+                usage: 'Children 4-12 years: 1 teaspoon (5ml) daily. Can be taken directly or mixed with juice/yogurt.'
+            },
+            'manviox': {
+                name: 'Manviox Q10',
+                price: '$54.99',
+                image: 'health suppli spearn ani.png',
+                description: 'Advanced Coenzyme Q10 formula for cardiovascular support and cellular energy production. 200mg per serving with enhanced absorption.',
+                benefits: [
+                    'Supports healthy heart function and circulation',
+                    'Boosts cellular energy and reduces fatigue',
+                    'Powerful antioxidant protection against free radicals',
+                    'May help maintain healthy blood pressure levels',
+                    'Supports muscle function and exercise recovery',
+                    'Enhanced with BioPerine for 30% better absorption'
+                ],
+                why: 'CoQ10 is essential for energy production in every cell. Levels decline with age, making supplementation crucial for maintaining cardiovascular health, energy levels, and protecting against oxidative stress.',
+                usage: 'Take 1-2 capsules daily with food. Best taken in the morning for sustained energy throughout the day.'
+            },
+            'bcaa': {
+                name: 'BCAA Complex',
+                price: '$44.99',
+                image: 'health suppli spearn ani.png',
+                description: 'Premium branch chain amino acid formula with optimal 2:1:1 ratio. Supports muscle recovery, reduces soreness, and enhances endurance.',
+                benefits: [
+                    'Accelerates muscle recovery after workouts',
+                    'Reduces muscle soreness and fatigue',
+                    'Prevents muscle breakdown during training',
+                    'Enhances endurance and workout performance',
+                    'Supports lean muscle growth and maintenance',
+                    'Zero sugar, gluten-free, and vegan-friendly'
+                ],
+                why: 'BCAAs (leucine, isoleucine, valine) are essential amino acids that your body uses to build and repair muscle tissue. They help reduce fatigue during workouts and speed up recovery, making them essential for anyone serious about fitness.',
+                usage: 'Mix 1 scoop with 8-10oz water. Take during workouts or immediately after for optimal recovery benefits.'
+            },
+            'artrohelp': {
+                name: 'Artrohelp Forte',
+                price: '$64.99',
+                image: 'health suppli spearn ani.png',
+                description: 'Comprehensive joint support formula with glucosamine, chondroitin, MSM, and turmeric. Promotes flexibility, mobility, and comfort.',
+                benefits: [
+                    'Rebuilds and protects cartilage naturally',
+                    'Reduces joint discomfort and stiffness',
+                    'Improves flexibility and range of motion',
+                    'Contains anti-inflammatory turmeric extract',
+                    'Supports healthy connective tissue',
+                    'Clinically studied ingredients at effective doses'
+                ],
+                why: 'Joint health is crucial for maintaining an active lifestyle. Our comprehensive formula combines proven ingredients that work synergistically to rebuild cartilage, reduce inflammation, and support long-term joint health.',
+                usage: 'Take 2 capsules twice daily with meals. Consistent use for 6-8 weeks shows best results for joint health.'
+            }
+        };
+
+        // Wishlist Management
+        let wishlist = JSON.parse(localStorage.getItem('reicuriWishlist')) || [];
+
+        function toggleWishlist(productId, event) {
+            event.stopPropagation();
+
+            const btn = event.target;
+            const isLiked = wishlist.includes(productId);
+
+            if (isLiked) {
+                // Remove from wishlist
+                wishlist = wishlist.filter(id => id !== productId);
+                btn.classList.remove('liked');
+                showToast('❌', 'Removed from wishlist');
+            } else {
+                // Add to wishlist
+                wishlist.push(productId);
+                btn.classList.add('liked');
+                showToast('❤️', 'Added to wishlist!');
+            }
+
+            localStorage.setItem('reicuriWishlist', JSON.stringify(wishlist));
+        }
+
+        function showToast(icon, text) {
+            const toast = document.getElementById('wishlistToast');
+            document.getElementById('toastIcon').textContent = icon;
+            document.getElementById('toastText').textContent = text;
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Info Modal Functions
+        function openInfoModal(productId, event) {
+            event.stopPropagation();
+
+            const product = productData[productId];
+            const modal = document.getElementById('infoModal');
+            const content = document.getElementById('modalContent');
+
+            content.innerHTML = `
+                <div class="modal-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="modal-details">
+                    <h2>${product.name}</h2>
+                    <div class="modal-price">${product.price}</div>
+                    
+                    <div class="modal-section">
+                        <h3>Product Overview</h3>
+                        <p>${product.description}</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Key Benefits</h3>
+                        <ul class="benefits-list">
+                            ${product.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Why Choose This Product?</h3>
+                        <p>${product.why}</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>How to Use</h3>
+                        <p>${product.usage}</p>
+                    </div>
+                    
+                    <div class="modal-cta">
+                        <button class="modal-btn modal-btn-primary" onclick="addToCart('${productId}'); closeInfoModal();">
+                            Add to Cart - ${product.price}
+                        </button>
+                        <button class="modal-btn modal-btn-secondary" onclick="toggleWishlistFromModal('${productId}')">
+                            ${wishlist.includes(productId) ? '❤️ In Wishlist' : '🤍 Add to Wishlist'}
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInfoModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleWishlistFromModal(productId) {
+            const isLiked = wishlist.includes(productId);
+
+            if (isLiked) {
+                wishlist = wishlist.filter(id => id !== productId);
+                showToast('❌', 'Removed from wishlist');
+            } else {
+                wishlist.push(productId);
+                showToast('❤️', 'Added to wishlist!');
+            }
+
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+            // Update modal button
+            const btn = event.target;
+            btn.textContent = wishlist.includes(productId) ? '❤️ In Wishlist' : '🤍 Add to Wishlist';
+
+            // Update card wishlist button
+            const card = document.querySelector(`[data-product="${productId}"]`);
+            const cardBtn = card.querySelector('.wishlist-btn');
+            if (wishlist.includes(productId)) {
+                cardBtn.classList.add('liked');
+            } else {
+                cardBtn.classList.remove('liked');
+            }
+        }
+
+        // Cart Functions
+        function addToCart(productId) {
+            const product = productData[productId];
+            showToast('🛒', `${product.name} added to cart!`);
+
+            // Here you would typically add to cart logic
+            console.log('Added to cart:', productId);
+        }
+
+        // Filter Products by Category
+        function filterProducts(category) {
+            const pills = document.querySelectorAll('.filter-pill');
+            const cards = document.querySelectorAll('.product-card');
+
+            // Update active pill
+            pills.forEach(pill => pill.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter cards
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.4s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Initialize wishlist states on page load
+        window.addEventListener('load', () => {
+            wishlist.forEach(productId => {
+                const card = document.querySelector(`[data-product="${productId}"]`);
+                if (card) {
+                    const btn = card.querySelector('.wishlist-btn');
+                    btn.classList.add('liked');
+                }
+            });
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('infoModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeInfoModal();
+            }
+        });
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeInfoModal();
+            }
+        });
+    </script>
+
+    <!-- Cart & Announcement Functions -->
+    <script>
+        /* ═══════════════════════════════════════════════════════════════
+           ANNOUNCEMENT BAR FUNCTIONS
+           ═══════════════════════════════════════════════════════════════ */
+        function closeAnnouncement() {
+            const bar = document.getElementById('announcementBar');
+            bar.style.display = 'none';
+            document.body.classList.remove('has-announcement');
+            sessionStorage.setItem('announcementClosed', 'true');
+        }
+
+        function startAnnouncementTimer() {
+            const hoursEl = document.getElementById('timerHours');
+            const minsEl = document.getElementById('timerMins');
+            const secsEl = document.getElementById('timerSecs');
+            if (!hoursEl) return;
+            let totalSeconds = 23 * 3600 + 59 * 60 + 59;
+            setInterval(() => {
+                if (totalSeconds <= 0) totalSeconds = 24 * 3600 - 1;
+                const hours = Math.floor(totalSeconds / 3600);
+                const mins = Math.floor((totalSeconds % 3600) / 60);
+                const secs = totalSeconds % 60;
+                hoursEl.textContent = hours.toString().padStart(2, '0');
+                minsEl.textContent = mins.toString().padStart(2, '0');
+                secsEl.textContent = secs.toString().padStart(2, '0');
+                totalSeconds--;
+            }, 1000);
+        }
+
+        if (sessionStorage.getItem('announcementClosed')) {
+            const bar = document.getElementById('announcementBar');
+            if (bar) {
+                bar.style.display = 'none';
+                document.body.classList.remove('has-announcement');
+            }
+        } else {
+            startAnnouncementTimer();
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           SHOPPING CART FUNCTIONS
+           ═══════════════════════════════════════════════════════════════ */
+        let cart = JSON.parse(localStorage.getItem('reicuriCart')) || [];
+
+        function openCart() {
+            document.getElementById('cartSidebar').classList.add('active');
+            document.getElementById('cartOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            renderCart();
+        }
+
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('active');
+            document.getElementById('cartOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            renderCart();
+            updateCartBadge();
+        }
+
+        function updateCartQty(productId, delta) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    removeFromCart(productId);
+                    return;
+                }
+            }
+            saveCart();
+            renderCart();
+        }
+
+        function saveCart() {
+            localStorage.setItem('reicuriCart', JSON.stringify(cart));
+        }
+
+        function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            const badge = document.getElementById('navCartBadge');
+            const countSpan = document.getElementById('cartCount');
+            if (badge) badge.textContent = totalItems;
+            if (countSpan) countSpan.textContent = totalItems;
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartItems');
+            const emptyState = document.getElementById('cartEmpty');
+            const subtotalEl = document.getElementById('cartSubtotal');
+
+            if (cart.length === 0) {
+                emptyState.style.display = 'block';
+                subtotalEl.textContent = '₹0';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            let cartHTML = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price * item.qty;
+                cartHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-image"><img src="${item.image}" alt="${item.name}"></div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">₹${item.price.toLocaleString()}</div>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="updateCartQty('${item.id}', -1)">−</button>
+                                <span>${item.qty}</span>
+                                <button class="qty-btn" onclick="updateCartQty('${item.id}', 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" style="background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer;">✕</button>
+                    </div>`;
+            });
+
+            container.innerHTML = cartHTML + emptyState.outerHTML;
+            subtotalEl.textContent = '₹' + subtotal.toLocaleString();
+        }
+
+        // Override addToCart to also update global cart
+        const originalAddToCart = addToCart;
+        addToCart = function (productId) {
+            const product = productData[productId];
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    price: parseInt(product.price.replace(/[₹,]/g, '')),
+                    image: product.image,
+                    qty: 1
+                });
+            }
+            saveCart();
+            updateCartBadge();
+            openCart();
+        };
+
+        // Initialize cart badge on load
+        updateCartBadge();
+    </script>
+
+    <!-- Footer -->
+    <footer class="shop-footer">
+        <p class="footer-text">© 2026 REICURI. Premium Nutrition for Peak Performance. <a href="index.html">Back to
+                Home</a></p>
+    </footer>
+
+    <!-- WhatsApp Floating Widget -->
+    <div class="whatsapp-widget">
+        <span class="whatsapp-tooltip">Need help? Chat with us!</span>
+        <a href="https://wa.me/+919845815772" target="_blank" class="whatsapp-btn">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+        </a>
+    </div>
+</body>
+
+</html>
